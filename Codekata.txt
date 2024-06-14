@@ -1,0 +1,102 @@
+[
+  {
+    _id: ObjectId('666aa85cd1e29399ad739321'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392af'),
+    problems_Solved: 34
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739322'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392b0'),
+    problems_Solved: 22
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739323'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392b1'),
+    problems_Solved: 54
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739324'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392b2'),
+    problems_Solved: 26
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739325'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392b3'),
+    problems_Solved: 57
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739326'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392b4'),
+    problems_Solved: 41
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739327'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392b5'),
+    problems_Solved: 67
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739328'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392b6'),
+    problems_Solved: 56
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739329'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392b7'),
+    problems_Solved: 39
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad73932a'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392b8'),
+    problems_Solved: 55
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad73932b'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392b9'),
+    problems_Solved: 76
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad73932c'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392ba'),
+    problems_Solved: 67
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad73932d'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392bb'),
+    problems_Solved: 43
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad73932e'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392bc'),
+    problems_Solved: 36
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad73932f'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392bd'),
+    problems_Solved: 33
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739330'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392be'),
+    problems_Solved: 99
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739331'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392bf'),
+    problems_Solved: 66
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739332'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392c0'),
+    problems_Solved: 38
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739333'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392c1'),
+    problems_Solved: 34
+  },
+  {
+    _id: ObjectId('666aa85cd1e29399ad739334'),
+    user_id: ObjectId('666aa4f9d1e29399ad7392c2'),
+    problems_Solved: 85
+  }
+]

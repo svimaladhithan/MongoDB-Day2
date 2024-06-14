@@ -1,0 +1,583 @@
+1. Find all the topics and tasks which are thought in the month of October
+
+Query:
+
+db.topics.aggregate([
+  {
+$lookup:{
+from: 'tasks',
+localField: 'topic_name',
+foreignField: 'task_name',
+as: 'topics and tasks'
+}
+},
+  {
+$match:{
+date:{$regex:'2020-10'}
+}
+},
+  {
+$unwind: '$topics and tasks'
+},
+  {
+$project:{
+_id:0,
+date:1,
+task: '$topics and tasks.task_name',
+userid: '$topics and tasks.user_id',
+submitted: '$topics and tasks.submitted'
+}
+}
+]).toArray();
+
+Output:
+
+[
+  { date: '2020-10-01', task: 'Redux', userid: 1, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 2, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 3, submitted: 'false' },
+  { date: '2020-10-01', task: 'Redux', userid: 4, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 5, submitted: 'false' },
+  { date: '2020-10-01', task: 'Redux', userid: 6, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 7, submitted: 'false' },
+  { date: '2020-10-01', task: 'Redux', userid: 8, submitted: 'false' },
+  { date: '2020-10-01', task: 'Redux', userid: 8, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 9, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 10, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 11, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 12, submitted: 'false' },
+  { date: '2020-10-01', task: 'Redux', userid: 13, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 14, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 15, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 16, submitted: 'false' },
+  { date: '2020-10-01', task: 'Redux', userid: 17, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 18, submitted: 'true' },
+  { date: '2020-10-01', task: 'Redux', userid: 19, submitted: 'false' },
+  { date: '2020-10-01', task: 'Redux', userid: 20, submitted: 'true' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 1, submitted: 'false' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 2, submitted: 'true' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 3, submitted: 'false' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 4, submitted: 'true' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 5, submitted: 'true' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 6, submitted: 'false' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 7, submitted: 'true' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 8, submitted: 'true' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 9, submitted: 'true' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 10, submitted: 'true' },
+  {
+    date: '2020-10-21',
+    task: 'NodeJS',
+    userid: 11,
+    submitted: 'false'
+  },
+  { date: '2020-10-21', task: 'NodeJS', userid: 12, submitted: 'true' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 13, submitted: 'true' },
+  {
+    date: '2020-10-21',
+    task: 'NodeJS',
+    userid: 14,
+    submitted: 'false'
+  },
+  { date: '2020-10-21', 
+    task: 'NodeJS', 
+    userid: 15, 
+    submitted: 'true' 
+    },
+  { date: '2020-10-21', task: 'NodeJS', userid: 16, submitted: 'true' },
+  { date: '2020-10-21', task: 'NodeJS', userid: 17, submitted: 'true' },
+  {
+    date: '2020-10-21',
+    task: 'NodeJS',
+    userid: 18,
+    submitted: 'false'
+  },
+  { date: '2020-10-21', task: 'NodeJS', userid: 19, submitted: 'true' },
+  {
+    date: '2020-10-21',
+    task: 'NodeJS',
+    userid: 20,
+    submitted: 'false'
+  }
+]
+
+2. Find all the company drives which appeared between 15 oct-2020 and 31-oct-2020
+
+Query:
+
+db.company_drives.find({
+drive_date:{
+$gte: "2020-10-15",
+$lte: "2020-10-31"
+}
+})
+
+Output:
+
+{
+  _id: ObjectId('666aae25d1e29399ad7393dd'),
+  user_id: ObjectId('666aa4f9d1e29399ad7392b0'),
+  company_name: 'Rently',
+  drive_date: '2020-10-15'
+}
+{
+  _id: ObjectId('666aae25d1e29399ad7393de'),
+  user_id: ObjectId('666aa4f9d1e29399ad7392af'),
+  company_name: 'Google',
+  drive_date: '2020-10-19'
+}
+{
+  _id: ObjectId('666aae25d1e29399ad7393df'),
+  user_id: ObjectId('666aa4f9d1e29399ad7392b3'),
+  company_name: 'Amazon',
+  drive_date: '2020-10-20'
+}
+{
+  _id: ObjectId('666aae25d1e29399ad7393e2'),
+  user_id: ObjectId('666aa4f9d1e29399ad7392b8'),
+  company_name: 'CTS',
+  drive_date: '2020-10-24'
+}
+{
+  _id: ObjectId('666aae25d1e29399ad7393e3'),
+  user_id: ObjectId('666aa4f9d1e29399ad7392b9'),
+  company_name: 'Infosys',
+  drive_date: '2020-10-25'
+}
+{
+  _id: ObjectId('666aae25d1e29399ad7393e5'),
+  user_id: ObjectId('666aa4f9d1e29399ad7392bc'),
+  company_name: 'LTIMindtree',
+  drive_date: '2020-10-30'
+}
+{
+  _id: ObjectId('666aae25d1e29399ad7393e6'),
+  user_id: ObjectId('666aa4f9d1e29399ad7392be'),
+  company_name: 'IBM',
+  drive_date: '2020-10-21'
+}
+
+3. Find all the company drives and students who are appeared for the placement.
+
+Query:
+    db.company_drives.aggregate([
+  {
+$lookup:{
+from: 'users',
+localField: 'user_id',
+foreignField: '_id',
+as: 'user and company drives'
+}
+},
+  {
+$unwind: '$user and company drives'
+},
+  {
+$project:{
+_id:0,
+drive_Date:1,
+company_name:1,
+userid: '$user and company drives.user_id',
+name: '$user and company drives.name',
+email:'$user and company drives.email'
+}
+}
+]).toArray();
+
+Output:
+
+[
+  {
+    company_name: 'Rently',
+    userid: 2,
+    name: 'Karuppu',
+    email: 'karuppu@gmail.com'
+  },
+  {
+    company_name: 'Google',
+    userid: 1,
+    name: 'Vimal',
+    email: 'vimal@gmail.com'
+  },
+  {
+    company_name: 'Amazon',
+    userid: 5,
+    name: 'Vishwa',
+    email: 'vishwa@gmail.com'
+  },
+  {
+    company_name: 'TCS',
+    userid: 7,
+    name: 'Sridhar',
+    email: 'sridhar@gmail.com'
+  },
+  {
+    company_name: 'Accenture',
+    userid: 6,
+    name: 'Mithran',
+    email: 'mithran@gmail.com'
+  },
+  {
+    company_name: 'CTS',
+    userid: 10,
+    name: 'Surya',
+    email: 'surya@gmail.com'
+  },
+  {
+    company_name: 'Infosys',
+    userid: 11,
+    name: 'Velu',
+    email: 'velu@gmail.com'
+  },
+  {
+    company_name: 'Flipkart',
+    userid: 13,
+    name: 'Vignesh',
+    email: 'vignesh@gmail.com'
+  },
+  {
+    company_name: 'LTIMindtree',
+    userid: 14,
+    name: 'Sai',
+    email: 'sai@gmail.com'
+  },
+  {
+    company_name: 'IBM',
+    userid: 16,
+    name: 'Sudha',
+    email: 'sudha@gmail.com'
+  },
+  {
+    company_name: 'LMW',
+    userid: 17,
+    name: 'Vasanth',
+    email: 'vasanth@gmail.com'
+  },
+  {
+    company_name: 'Ferrari',
+    userid: 18,
+    name: 'Nisanth',
+    email: 'nisanth@gmail.com'
+  },
+  {
+    company_name: 'Bosch',
+    userid: 19,
+    name: 'Sandeep',
+    email: 'sandeep@gmail.com'
+  },
+  {
+    company_name: 'SGS',
+    userid: 20,
+    name: 'Jiffy',
+    email: 'jiffy@gmail.com'
+  }
+]
+
+4. Find the number of problems solved by the user in codekata
+
+Query:
+
+  db.codekata.aggregate([
+  {
+$lookup:{
+from:'users',
+localField:'user_id',
+foreignField:'_id',
+as:'problemsolved'
+}
+},
+  {
+$unwind: '$problemsolved'
+},
+  {
+$project:{
+_id:0,
+userid:'$problemsolved.user_id',
+name:'$problemsolved.name',
+email:'$problemsolved.email',
+problems_Solved:1
+}
+}
+]).toArray()
+
+Output:
+
+[
+  {
+    problems_Solved: 34,
+    userid: 1,
+    name: 'Vimal',
+    email: 'vimal@gmail.com'
+  },
+  {
+    problems_Solved: 22,
+    userid: 2,
+    name: 'Karuppu',
+    email: 'karuppu@gmail.com'
+  },
+  {
+    problems_Solved: 54,
+    userid: 3,
+    name: 'Kavin',
+    email: 'kavin@gmail.com'
+  },
+  {
+    problems_Solved: 26,
+    userid: 4,
+    name: 'Sandhosh',
+    email: 'sandhosh@gmail.com'
+  },
+  {
+    problems_Solved: 57,
+    userid: 5,
+    name: 'Vishwa',
+    email: 'vishwa@gmail.com'
+  },
+  {
+    problems_Solved: 41,
+    userid: 6,
+    name: 'Mithran',
+    email: 'mithran@gmail.com'
+  },
+  {
+    problems_Solved: 67,
+    userid: 7,
+    name: 'Sridhar',
+    email: 'sridhar@gmail.com'
+  },
+  {
+    problems_Solved: 56,
+    userid: 8,
+    name: 'Thiyagu',
+    email: 'thiyagu@gmail.com'
+  },
+  {
+    problems_Solved: 39,
+    userid: 9,
+    name: 'Pravin',
+    email: 'pravin@gmail.com'
+  },
+  {
+    problems_Solved: 55,
+    userid: 10,
+    name: 'Surya',
+    email: 'surya@gmail.com'
+  },
+  {
+    problems_Solved: 76,
+    userid: 11,
+    name: 'Velu',
+    email: 'velu@gmail.com'
+  },
+  {
+    problems_Solved: 67,
+    userid: 12,
+    name: 'Monish',
+    email: 'monish@gmail.com'
+  },
+  {
+    problems_Solved: 43,
+    userid: 13,
+    name: 'Vignesh',
+    email: 'vignesh@gmail.com'
+  },
+  {
+    problems_Solved: 36,
+    userid: 14,
+    name: 'Sai',
+    email: 'sai@gmail.com'
+  },
+  {
+    problems_Solved: 33,
+    userid: 15,
+    name: 'Susee',
+    email: 'susee@gmail.com'
+  },
+  {
+    problems_Solved: 99,
+    userid: 16,
+    name: 'Sudha',
+    email: 'sudha@gmail.com'
+  },
+  {
+    problems_Solved: 66,
+    userid: 17,
+    name: 'Vasanth',
+    email: 'vasanth@gmail.com'
+  },
+  {
+    problems_Solved: 38,
+    userid: 18,
+    name: 'Nisanth',
+    email: 'nisanth@gmail.com'
+  },
+  {
+    problems_Solved: 34,
+    userid: 19,
+    name: 'Sandeep',
+    email: 'sandeep@gmail.com'
+  },
+  {
+    problems_Solved: 85,
+    userid: 20,
+    name: 'Jiffy',
+    email: 'jiffy@gmail.com'
+  }
+]
+
+
+5. Find all the mentors with who has the mentee's count more than 15
+
+Query:
+  db.mentors.aggregate([
+  {
+$lookup:{
+from:'users',
+localField:'mentor_id',
+foreignField:'mentor_id',
+as:'menteecount'
+}
+},
+  {
+$project:{count:{$size:'$menteecount'},
+_id:0,
+mentor_name:1,
+mentor_id:1
+}
+},
+  {
+$match:{count:{$gt:15}}
+}
+])
+
+Output:
+
+{
+  mentor_name: 'Rupan',
+  mentor_id: 1,
+  count: 16
+}
+
+6. Find the number of users who are absent and task is not submitted  between 15 oct-2020 and 31-oct-2020
+
+Query: 
+  db.attendance.aggregate([
+  {
+$lookup:{
+from:'topics',
+localField:'topic_id',
+foreignField:'topic_id',
+as:'attendance'
+}
+},
+  {
+$lookup:{
+from:'tasks',
+localField:'user_id',
+foreignField:'user_id',
+as:'task-notcompleted'
+}
+},
+  {
+$unwind:'$attendance'
+},
+  {
+$unwind:'$task-notcompleted'
+},
+  {
+$match:{
+attended:'false',
+'attendance.date':{$gte:'2020-10-15',$lte:'2020-10-31'}
+}
+},
+  {
+$match:{
+'task-notcompleted.task_date':{
+$gte:'2020-10-15',$lte:'2020-10-31'
+},
+'task-notcompleted.submitted':'false'
+}
+},
+  {
+$project:{
+_id:0,
+'attendance._id':0,
+'task-notcompleted._id':0
+}
+}
+]).toArray()
+
+Output:
+
+[
+  {
+    user_id: 5,
+    topic_id: 3,
+    attended: 'false',
+    attendance: { topic_id: 3, topic_name: 'NodeJS', date: '2020-10-21' },
+    'task-notcompleted': {
+      task_id: 1,
+      topic_id: 1,
+      user_id: 5,
+      task_name: 'Redux',
+      task_date: '2020-10-16',
+      submitted: 'false'
+    }
+  },
+  {
+    user_id: 8,
+    topic_id: 3,
+    attended: 'false',
+    attendance: { topic_id: 3, topic_name: 'NodeJS', date: '2020-10-21' },
+    'task-notcompleted': {
+      task_id: 1,
+      topic_id: 1,
+      user_id: 8,
+      task_name: 'Redux',
+      task_date: '2020-10-16',
+      submitted: 'false'
+    }
+  },
+  {
+    user_id: 12,
+    topic_id: 3,
+    attended: 'false',
+    attendance: { topic_id: 3, topic_name: 'NodeJS', date: '2020-10-21' },
+    'task-notcompleted': {
+      task_id: 1,
+      topic_id: 1,
+      user_id: 12,
+      task_name: 'Redux',
+      task_date: '2020-10-16',
+      submitted: 'false'
+    }
+  },
+  {
+    user_id: 12,
+    topic_id: 3,
+    attended: 'false',
+    attendance: { topic_id: 3, topic_name: 'NodeJS', date: '2020-10-21' },
+    'task-notcompleted': {
+      task_id: 2,
+      topic_id: 2,
+      user_id: 12,
+      task_name: 'MongoDB',
+      task_date: '2020-10-21',
+      submitted: 'false'
+    }
+  },
+  {
+    user_id: 20,
+    topic_id: 3,
+    attended: 'false',
+    attendance: { topic_id: 3, topic_name: 'NodeJS', date: '2020-10-21' },
+    'task-notcompleted': {
+      task_id: 3,
+      topic_id: 3,
+      user_id: 20,
+      task_name: 'NodeJS',
+      task_date: '2020-10-28',
+      submitted: 'false'
+    }
+  }
+]
+
